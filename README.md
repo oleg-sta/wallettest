@@ -13,10 +13,12 @@ This is an implementation of Wallet test task.
 - [Starting](#starting)
 
 ## Assumptions
-For working application it is reuired MySQL 5.7 or higher.
+For working application it is reuired MySQL 5.7 or above.
 In example:
 * java -cp "parser.jar" com.ef.Parser --accesslog=/path/to/file --startDate=2017-01-01.13:00:00 --duration=hourly --threshold=100
+
  we assume that at first we load data to DB, then make analytics from DB. So there is no analytics only on file.
+
 Bockking by IP created with doubles IP.
 There is no checking on invalid data in file.
 
@@ -29,14 +31,18 @@ Scripts are situated in sql dir. Thre are 3 files:
 
 ## Settings
 
-For compiling you need to have maven 3.3.9 or above.
+For compiling you need:
+* maven 3.3.9 or above
+* java 1.8 or above
+
 Start compiling by:
 * mvn clean install
+
 result file will be target/parser.jar
 
 ## Starting
 
 In working directory you should have file config.properties with database connection properties. You could get it from root of source files.
-Make required modofication in file. Start application as written in Test Instruction.
+Make required modification in file. Start application as written in Test Instruction.
 
 
