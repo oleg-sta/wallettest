@@ -47,7 +47,7 @@ public class LoadFromFile {
                             preparedStatement.setString(i++, values[3]);
                             preparedStatement.setString(i++, values[4]);
                             preparedStatement.addBatch();
-                            if (count++ % BATCH_SIZE == 0) {
+                            if (++count % BATCH_SIZE == 0) {
                                 preparedStatement.executeBatch();
                                 connection.commit();
                             }

@@ -31,10 +31,7 @@ public class IpAnalyzer {
         try (PreparedStatement statementFind = connection.prepareStatement(STATEMENT);
              PreparedStatement statementInsert = connection.prepareStatement(INSERT_STATEMENT)) {
             statementFind.setTimestamp(1, new java.sql.Timestamp(date.getTime()), cal);
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date);
-            calendar.add(Calendar.HOUR_OF_DAY, hours);
-            Date dateEnd = calendar.getTime();
+            Date dateEnd = getDateShift(date, hours);
             statementFind.setTimestamp(2, new java.sql.Timestamp(dateEnd.getTime()), cal);
             statementFind.setInt(3, threshold);
             int countBatch = 0;
@@ -55,5 +52,12 @@ public class IpAnalyzer {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public static Date getDateShift(Date date, int shiftHours) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        calendar.add(Calendar.HOUR_OF_DAY, shiftHours);
+        return calendar.getTime();
     }
 }
